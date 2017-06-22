@@ -1,6 +1,6 @@
 {% set name = "pynacl" %}
-{% set version = "1.0.1" %}
-{% set sha256 = "033fb4db0598773b34863b0bebf0e64985712aec449513e78bfe2afc410cd759" %}
+{% set version = "1.1.2" %}
+{% set sha256 = "448897f0cfe3607dc23a871fa4405ef00926179df27ee8dfd0e46d42c60d8968" %}
 
 package:
   name: {{ name|lower }}
