@@ -20,12 +20,12 @@ requirements:
     - python
     - setuptools
     - toolchain
-    - cffi
+    - cffi >=1.4.1
     
   run:
     - python
     - six
-    - cffi
+    - cffi >=1.4.1
 
 test:
   requires:
