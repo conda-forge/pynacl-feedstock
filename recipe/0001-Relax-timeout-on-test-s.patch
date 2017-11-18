@@ -1,0 +1,25 @@
+From 24aa2eaba2fbfe5a22554e9c79a340a466fb4e4c Mon Sep 17 00:00:00 2001
+From: Nehal J Wani <nehaljw.kkd1@gmail.com>
+Date: Sat, 18 Nov 2017 13:51:49 -0600
+Subject: [PATCH] Relax timeout on test(s)
+
+---
+ tests/test_pwhash.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/test_pwhash.py b/tests/test_pwhash.py
+index 9634c85..bff5e25 100644
+--- a/tests/test_pwhash.py
++++ b/tests/test_pwhash.py
+@@ -448,7 +448,7 @@ def test_argon2i_str_and_verify_fail(password, ops, mem):
+ 
+ 
+ @given(text(alphabet=PASSWD_CHARS, min_size=5, max_size=20))
+-@settings(deadline=1500, max_examples=5)
++@settings(deadline=4000, max_examples=5)
+ def test_pwhash_str_and_verify(password):
+     _psw = password.encode('utf-8')
+ 
+-- 
+2.14.1
+
