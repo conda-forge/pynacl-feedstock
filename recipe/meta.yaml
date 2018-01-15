@@ -1,6 +1,6 @@
 {% set name = "pynacl" %}
-{% set version = "1.1.2" %}
-{% set sha256 = "448897f0cfe3607dc23a871fa4405ef00926179df27ee8dfd0e46d42c60d8968" %}
+{% set version = "1.2.1" %}
+{% set sha256 = "e0d38fa0a75f65f556fb912f2c6790d1fa29b7dd27a1d9cc5591b281321eaaa9" %}
 
 package:
   name: {{ name|lower }}
@@ -8,11 +8,11 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/pyca/{{ name }}/archive/{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
