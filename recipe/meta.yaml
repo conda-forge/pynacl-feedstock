@@ -16,13 +16,15 @@ source:
 
 build:
   number: 0
+  ignore_run_exports:  # [win]
+    - libsodium        # [win]
 
 requirements:
   host:
     - python
     - setuptools
     - cffi >=1.4.1
-    - libsodium   # [win]
+    - libsodium
     - msinttypes  # [win and vc<14]
 
   build:
