@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
   patches:
     - 0001-Fix-name-of-static-sodium-lib.patch  # [win]
-    - 0001-Relax-timeout-on-test-s.patch        # [win and vc<14]
+    - 0002-Relax-timeout-on-test-s.patch        # [win and vc<14]
 
 build:
   number: 0
