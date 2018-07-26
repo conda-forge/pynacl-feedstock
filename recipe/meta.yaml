@@ -21,12 +21,13 @@ requirements:
   host:
     - python
     - setuptools
-    - cffi
+    - cffi >=1.4.1
     - libsodium
   run:
     - python
     - six
-    - cffi
+    - cffi >=1.4.1
+    - libsodium
 
 test:
   requires:
