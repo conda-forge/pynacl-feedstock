@@ -13,7 +13,7 @@ source:
 
 build:
   number: 0
-  script: $SODIUM_INSTALL=system & python setup.py install --single-version-externally-managed --record record.txt
+  script: export SODIUM_INSTALL=system & python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
