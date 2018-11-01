@@ -1,19 +1,11 @@
 version: 2
 
 jobs:
-<<<<<<< HEAD
-  build_linux_python2.7:
-    working_directory: ~/test
-    machine: true
-    environment:
-      - CONFIG: "linux_python2.7"
-=======
   build_linux_c_compilergccpython2.7:
     working_directory: ~/test
     machine: true
     environment:
       - CONFIG: "linux_c_compilergccpython2.7"
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e
     steps:
       - checkout
       - run:
@@ -26,19 +18,11 @@ jobs:
       - run:
           # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
           command: ./.circleci/run_docker_build.sh
-<<<<<<< HEAD
-  build_linux_python3.5:
-    working_directory: ~/test
-    machine: true
-    environment:
-      - CONFIG: "linux_python3.5"
-=======
   build_linux_c_compilergccpython3.6:
     working_directory: ~/test
     machine: true
     environment:
       - CONFIG: "linux_c_compilergccpython3.6"
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e
     steps:
       - checkout
       - run:
@@ -51,13 +35,6 @@ jobs:
       - run:
           # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
           command: ./.circleci/run_docker_build.sh
-<<<<<<< HEAD
-  build_linux_python3.6:
-    working_directory: ~/test
-    machine: true
-    environment:
-      - CONFIG: "linux_python3.6"
-=======
   build_linux_c_compilergccpython3.7:
     working_directory: ~/test
     machine: true
@@ -114,7 +91,6 @@ jobs:
     machine: true
     environment:
       - CONFIG: "linux_c_compilertoolchain_cpython3.7"
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e
     steps:
       - checkout
       - run:
@@ -132,15 +108,9 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-<<<<<<< HEAD
-      - build_linux_python2.7
-      - build_linux_python3.5
-      - build_linux_python3.6
-=======
       - build_linux_c_compilergccpython2.7
       - build_linux_c_compilergccpython3.6
       - build_linux_c_compilergccpython3.7
       - build_linux_c_compilertoolchain_cpython2.7
       - build_linux_c_compilertoolchain_cpython3.6
       - build_linux_c_compilertoolchain_cpython3.7
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e

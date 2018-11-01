@@ -1,6 +1,8 @@
 About pynacl
 ============
 
+[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+
 Home: https://github.com/pyca/pynacl
 
 Package license: Apache-2.0
@@ -17,11 +19,7 @@ Current build status
 
 [![Linux](https://img.shields.io/circleci/project/github/conda-forge/pynacl-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/pynacl-feedstock)
 [![OSX](https://img.shields.io/travis/conda-forge/pynacl-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/pynacl-feedstock)
-<<<<<<< HEAD
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/pynacl-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/pynacl-feedstock/branch/master)
-=======
-![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e
 
 Current release info
 ====================
@@ -107,10 +105,5 @@ In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
    the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-<<<<<<< HEAD
-   the [``build/number``](http://conda.pydata.org/docs/building/meta-yaml.html#build-number-and-string)
-   back to 0.
-=======
    the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
    back to 0.
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e
