@@ -12,29 +12,16 @@ source:
   sha256: {{ sha256 }}
 
 build:
-<<<<<<< HEAD
-  number: 0
-  script: export SODIUM_INSTALL=system & python setup.py install --single-version-externally-managed --record record.txt
-
-=======
   number: 1000
-  skip: True  # [win]
-  script: python -m pip install . --no-deps --ignore-installed
-  
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e
+  script: export SODIUM_INSTALL=system & python setup.py install --single-version-externally-managed --record record.txt
 requirements:
   build:
     - {{ compiler('c') }}
   host:
     - python
-<<<<<<< HEAD
     - setuptools
     - cffi >=1.4.1
     - libsodium
-=======
-    - pip
-    - cffi
->>>>>>> a40ba4e68e26896b6d2ffb5824062ee2a77b2e0e
   run:
     - python
     - six
