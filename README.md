@@ -107,3 +107,10 @@ In order to produce a uniquely identifiable distribution:
  * If the version of a package **is** being increased, please remember to return
    the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
    back to 0.
+
+Feedstock Maintainers
+=====================
+
+* [@CJ-Wright](https://github.com/CJ-Wright/)
+* [@mariusvniekerk](https://github.com/mariusvniekerk/)
+
