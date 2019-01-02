@@ -1,0 +1,14 @@
+diff --git a/setup.py b/setup.py
+index 691291d..78ab123 100644
+--- a/setup.py
++++ b/setup.py
+@@ -152,9 +152,6 @@ class build_clib(_build_clib):
+                 "src/libsodium/test/default/wintest.bat"]:
+             os.chmod(here(filename), 0o755)
+ 
+-        if not which("make"):
+-            raise Exception("ERROR: The 'make' utility is missing from PATH")
+-
+         # Locate our configure script
+         configure = abshere("src/libsodium/configure")
+ 
