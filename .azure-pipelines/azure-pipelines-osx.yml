@@ -1,7 +1,8 @@
 jobs:
 - job: osx_64
   pool:
-    vmImage: xcode9-macos10.13
+    vmImage: macOS-10.13
+  timeoutInMinutes: 240
   strategy:
     maxParallel: 8
     matrix:
@@ -45,7 +46,7 @@ jobs:
   - script: |
       export PATH=$(Build.StagingDirectory)/miniconda/bin:$PATH
       set -x -e
-      conda install --yes --quiet conda-forge::conda-forge-ci-setup=2
+      conda install -n base -c conda-forge --quiet --yes conda-forge-ci-setup=2
     displayName: 'Add conda-forge-ci-setup=2'
 
   - script: |

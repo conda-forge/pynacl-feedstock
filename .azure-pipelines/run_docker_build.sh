@@ -38,8 +38,11 @@ DOCKER_IMAGE=$(cat "${FEEDSTOCK_ROOT}/.ci_support/${CONFIG}.yaml" | shyaml get-v
 mkdir -p "$ARTIFACTS"
 DONE_CANARY="$ARTIFACTS/conda-forge-build-done-${CONFIG}"
 rm -f "$DONE_CANARY"
+# Not all providers run with a real tty.  Disable using one
+DOCKER_RUN_ARGS=" "
 
-docker run \
+
+docker run ${DOCKER_RUN_ARGS} \
            -v "${RECIPE_ROOT}":/home/conda/recipe_root:ro,z \
            -v "${FEEDSTOCK_ROOT}":/home/conda/feedstock_root:rw,z \
            -e CONFIG \
