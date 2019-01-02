@@ -11,7 +11,7 @@ source:
   url: https://github.com/pyca/{{ name }}/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - setup.py.patch
+    - setup.py.patch  # [win]
 
 build:
   number: 1000
