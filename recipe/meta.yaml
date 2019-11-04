@@ -32,7 +32,7 @@ test:
   requires:
     - pytest <5
     - pretend
-    - hypothesis
+    - hypothesis <4
   source_files:
     - tests/
   commands:
