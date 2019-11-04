@@ -30,7 +30,7 @@ requirements:
 
 test:
   requires:
-    - pytest
+    - pytest <5
     - pretend
     - hypothesis
   source_files:
