@@ -12,6 +12,7 @@ source:
   sha256: {{ sha256 }}
   patches:
     - 0001-Remove-average_size-hypothesis-setting-from-test_bin.patch
+    - 0002-Fixed-tests-for-change-in-pytest-repr-546.patch
 
 build:
   number: 1001
