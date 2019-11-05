@@ -10,9 +10,11 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/pyca/{{ name }}/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - 0001-Remove-average_size-hypothesis-setting-from-test_bin.patch
 
 build:
-  number: 1000
+  number: 1001
   skip: True  # [win]
   script: python -m pip install . --no-deps --ignore-installed
   
@@ -32,7 +34,7 @@ test:
   requires:
     - pytest
     - pretend
-    - hypothesis <4
+    - hypothesis
   source_files:
     - tests/
   commands:
