@@ -7,31 +7,41 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/pyca/{{ name }}/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
     - 0001-Remove-average_size-hypothesis-setting-from-test_bin.patch
     - 0002-Fixed-tests-for-change-in-pytest-repr-546.patch
+    - 0001-Fix-name-of-static-sodium-lib.patch  # [win]
 
 build:
   number: 1001
-  skip: True  # [win]
-  script: python -m pip install . --no-deps --ignore-installed
-  
+  script: 
+    - python -m pip install . --no-deps --ignore-installed  # [unix]
+  ignore_run_exports:  # [win]
+    - libsodium        # [win]
+
 requirements:
   build:
     - {{ compiler('c') }}
+    - m2-patch    # [win]
+    - make
   host:
     - python
     - pip
     - cffi
+    - msinttypes  # [win and vc<14]
+    - libsodium
   run:
     - python
     - six
-    - cffi
+    - cffi >=1.4.1
 
 test:
+  imports:
+    - nacl
+    - nacl.bindings
+    - nacl.pwhash
   requires:
     - pytest
     - pretend
