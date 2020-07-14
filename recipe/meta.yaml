@@ -19,6 +19,9 @@ build:
     - libsodium        # [win]
 
 requirements:
+  build:
+    - m2-patch    # [win]
+    - {{ compiler('c') }}
   host:
     - python
     - pip
@@ -27,11 +30,6 @@ requirements:
     - cffi >=1.4.1
     - libsodium
     - msinttypes  # [win and vc<14]
-
-  build:
-    - m2-patch    # [win]
-    - {{ compiler('c') }}
-
   run:
     - python
     - six
