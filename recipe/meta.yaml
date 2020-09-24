@@ -1,6 +1,6 @@
 {% set name = "pynacl" %}
-{% set version = "1.3.0" %}
-{% set sha256 = "205adb2804eed4bc3780584e368ef2e9b8b22a7aae85323068cadd59f3c8a584" %}
+{% set version = "1.4.0" %}
+{% set sha256 = "2ecfed5cba7a53aa1ca8f2b46002a47402e53d75b2e2615d3bd54934712cd60a" %}
 
 package:
   name: {{ name|lower }}
@@ -15,10 +15,10 @@ source:
     - 0001-Fix-name-of-static-sodium-lib.patch  # [win]
 
 build:
-  number: 1001
-  script: 
+  number: 0
+  script:
     - python -m pip install . --no-deps --ignore-installed  # [unix]
-  ignore_run_exports:  # [win]
+  ignore_run_exports:   # [win]
     - libsodium        # [win]
 
 requirements:
