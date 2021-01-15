@@ -1,4 +1,6 @@
 #!/bin/bash
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./src/libsodium/build-aux
 if [[ ${HOST} =~ .*linux.* ]] && [[ ${ARCH} == 32 ]]; then
     export CFLAGS="$CFLAGS -Og"
 fi
