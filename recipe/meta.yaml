@@ -14,7 +14,7 @@ source:
     - 0001-Fix-name-of-static-sodium-lib.patch
 
 build:
-  number: 3
+  number: 4
   ignore_run_exports:   # [win]
     - libsodium        # [win]
 
@@ -26,6 +26,7 @@ requirements:
     - m2-patch    # [win]
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - python
     - pip
