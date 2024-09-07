@@ -1,22 +1,16 @@
 {% set name = "PyNaCl" %}
 {% set version = "1.5.0" %}
-{% set sha256 = "8ac7448f09ab85811607bdd21ec2464495ac8b7c66d146bf545b0f08fb9220ba" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
-  patches:
-    - 0001-Fix-name-of-static-sodium-lib.patch
+  sha256: 8ac7448f09ab85811607bdd21ec2464495ac8b7c66d146bf545b0f08fb9220ba
 
 build:
-  number: 3
-  ignore_run_exports:   # [win]
-    - libsodium        # [win]
+  number: 4
 
 requirements:
   build:
@@ -26,6 +20,7 @@ requirements:
     - m2-patch    # [win]
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - python
     - pip
