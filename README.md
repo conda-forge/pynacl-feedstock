@@ -373,5 +373,6 @@ Feedstock Maintainers
 =====================
 
 * [@CJ-Wright](https://github.com/CJ-Wright/)
+* [@h-vetinari](https://github.com/h-vetinari/)
 * [@mariusvniekerk](https://github.com/mariusvniekerk/)
 
