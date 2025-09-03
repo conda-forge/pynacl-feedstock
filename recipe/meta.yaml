@@ -8,6 +8,9 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 8ac7448f09ab85811607bdd21ec2464495ac8b7c66d146bf545b0f08fb9220ba
+  patches:
+    # backport https://github.com/pyca/pynacl/pull/848
+    - patches/0001-Fix-compatibility-with-Python-3.14.0a1-848.patch
 
 build:
   number: 5
