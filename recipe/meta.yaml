@@ -1,16 +1,18 @@
-{% set name = "PyNaCl" %}
 {% set version = "1.5.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: pynacl
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/P/PyNaCl/PyNaCl-{{ version }}.tar.gz
   sha256: 8ac7448f09ab85811607bdd21ec2464495ac8b7c66d146bf545b0f08fb9220ba
+  patches:
+    # backport https://github.com/pyca/pynacl/pull/848
+    - patches/0001-Fix-compatibility-with-Python-3.14.0a1-848.patch
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   build:
@@ -28,7 +30,6 @@ requirements:
     - wheel
     - cffi >=1.4.1
     - libsodium
-    - msinttypes  # [win and vc<14]
   run:
     - python
     - six
@@ -62,3 +63,4 @@ extra:
   recipe-maintainers:
     - CJ-Wright
     - mariusvniekerk
+    - h-vetinari
