@@ -1,4 +1,4 @@
-{% set version = "1.6.1" %}
+{% set version = "1.6.2" %}
 
 package:
   name: pynacl
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/P/PyNaCl/pynacl-{{ version }}.tar.gz
-  sha256: 8d361dac0309f2b6ad33b349a56cd163c98430d409fa503b10b70b3ad66eaa1d
+  sha256: 018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c
 
 build:
   number: 0
