@@ -14,6 +14,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+libsodium:
+- 1.0.21
 macos_machine:
 - arm64-apple-darwin20.0.0
 pin_run_as_build:
