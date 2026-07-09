@@ -9,7 +9,7 @@ source:
   sha256: 018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -25,12 +25,12 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - cffi >=1.4.1
+    - cffi >=2.0.0
     - libsodium
   run:
     - python
     - six
-    - cffi >=1.4.1
+    - cffi >=2.0.0
 
 test:
   imports:
