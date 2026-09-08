@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.6.2"
+  cffi_min: "2.0.0"
+
+package:
+  name: pynacl
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/P/PyNaCl/pynacl-${{ version }}.tar.gz
+  sha256: 018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c
+
+build:
+  skip: is_abi3 and not is_python_min
+  number: 5
+  python:
+    version_independent: ${{ is_abi3 }}
+  script:
+    env:
+      SODIUM_INSTALL: system
+    content:
+      - if: unix
+        then:
+          - cp ${BUILD_PREFIX}/share/gnuconfig/config.* ./src/libsodium/build-aux
+          - export CPPFLAGS="$CPPFLAGS -I${PREFIX}/include"
+      - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - cffi >=${{ cffi_min }}
+    - if: win
+      then:
+        - m2-patch
+      else:
+        - gnuconfig
+  host:
+    - cffi >=${{ cffi_min }}
+    - libsodium
+    - pip
+    - python
+    - setuptools
+    - wheel
+    - if: is_abi3
+      then:
+        - python-abi3
+        - python ${{ python_min }}.*
+  run:
+    - cffi >=${{ cffi_min }}
+    - python
+    - six
+
+tests:
+  - if: is_abi3
+    then:
+      - python:
+          imports:
+            - nacl
+            - nacl.bindings
+            - nacl.pwhash
+          pip_check: true
+          python_version:
+             - ${{ python_min }}.*
+             - "*"
+    else:
+      - python:
+          imports:
+            - nacl
+            - nacl.bindings
+            - nacl.pwhash
+          pip_check: true
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - pytest >=3.2.1
+        - hypothesis >=3.27.0
+        - if: is_abi3
+          then:
+            - abi3audit
+            - python ${{ python_min }}.*
+    script:
+      - pytest -vv --tb=long --color=yes
+      - if: is_abi3
+        then:
+          - cd "${{ '$SP_DIR' if unix else '%SP_DIR%' }}/nacl"
+          - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} _sodium.${{ 'abi3.so' if unix else 'pyd' }}
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: PyNaCl is a Python binding to the Networking and Cryptography library, a crypto library with the stated goal of improving usability, security and speed.
+  description: |
+    PyNaCl is a Python binding to the Networking and Cryptography library, a crypto library with the stated goal of improving usability, security and speed. It supports Python 2.7 and 3.3+ as well as PyPy 2.6+.
+  homepage: https://github.com/pyca/pynacl
+  repository: https://github.com/pyca/pynacl
+  documentation: https://pynacl.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - CJ-Wright
+    - mariusvniekerk
+    - h-vetinari
