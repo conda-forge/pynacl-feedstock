@@ -10,7 +10,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://files.pythonhosted.org/packages/source/P/PyNaCl/pynacl-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/p/pynacl/pynacl-${{ version }}.tar.gz
   sha256: 018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c
 
 build:
@@ -26,7 +26,7 @@ build:
         then:
           - cp ${BUILD_PREFIX}/share/gnuconfig/config.* ./src/libsodium/build-aux
           - export CPPFLAGS="$CPPFLAGS -I${PREFIX}/include"
-      - ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation --disable-pip-version-check
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
   build:
@@ -59,6 +59,8 @@ requirements:
     - six
 
 tests:
+  # despite _working_ (as verified below), skip `pip_check` to avoid:
+  #  PyNaCl 1.6.2 is not supported on this platform
   - if: is_abi3
     then:
       - python:
@@ -66,7 +68,7 @@ tests:
             - nacl
             - nacl.bindings
             - nacl.pwhash
-          pip_check: true
+          pip_check: false
           python_version:
              - ${{ python_min }}.*
              - "*"
@@ -76,7 +78,23 @@ tests:
             - nacl
             - nacl.bindings
             - nacl.pwhash
-          pip_check: true
+          pip_check: false
+  - if: is_abi3
+    then:
+      - files:
+          source:
+            - tests/
+        requirements:
+          run:
+            - abi3audit
+            - hypothesis >=3.27.0
+            - pytest >=3.2.1
+            - python ${{ python_min }}.*
+        script:
+          - pytest --tb=long --color=yes
+          - cd "${{ '$SP_DIR' if unix else '%SP_DIR%' }}/nacl"
+          - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} _sodium.${{ 'abi3.so' if unix else 'pyd' }}
+  # this is run (and tests bundled) twice for abi3
   - files:
       source:
         - tests/
@@ -84,16 +102,9 @@ tests:
       run:
         - pytest >=3.2.1
         - hypothesis >=3.27.0
-        - if: is_abi3
-          then:
-            - abi3audit
-            - python ${{ python_min }}.*
+        - python *
     script:
-      - pytest -vv --tb=long --color=yes
-      - if: is_abi3
-        then:
-          - cd "${{ '$SP_DIR' if unix else '%SP_DIR%' }}/nacl"
-          - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} _sodium.${{ 'abi3.so' if unix else 'pyd' }}
+      - pytest --tb=long --color=yes
 
 about:
   license: Apache-2.0
