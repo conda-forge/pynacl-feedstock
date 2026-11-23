@@ -18,7 +18,7 @@ source:
 
 build:
   skip: is_abi3 and not is_python_min
-  number: 5
+  number: 6
   python:
     version_independent: ${{ is_abi3 }}
   script:
